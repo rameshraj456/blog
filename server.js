@@ -20,10 +20,12 @@ MongoClient.connect( MONGO_DB_URL ).then( client => {
     const users = DB.collection("users")
     const posts = DB.collection("posts")
     const deletedPosts = DB.collection("deletedPosts")
+    const logs = DB.collection("logs")
  
     app.set("users" , users);
     app.set("posts" , posts);
     app.set("deletedPosts" , deletedPosts)
+    app.set("logs" , logs)
 
     console.log("Mongo DB connected")
 }).catch(err => {
