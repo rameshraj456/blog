@@ -1,4 +1,5 @@
 const exp = require("express")
+const { ObjectId } = require("mongodb")
 const usersAPI = exp.Router()
 
 usersAPI.get("/" , (req,res)=>{
@@ -72,6 +73,56 @@ usersAPI.post("/login-with-user-name" , async (req,res)=>{
     }
 })
 
+usersAPI.put("/change-username" , async(req,res) => {
+    const usersCollection =  req.app.get("users");
+    
+    try{
+        const { userName , id } = req.body;
 
+        const existence = await usersCollection.find( { userName : userName } ).toArray();
+        if(existence.length == 0 ){
+            // unique name
+            const updateStatus = await usersCollection.updateOne( { "_id": new ObjectId(id) } , { $set:{ userName:userName } } )
+            res.send( {
+                success:true,
+                message:"userName modified",
+                data:updateStatus
+            })
+        }else{
+            res.send( {
+                success:false,
+                message:"userName already exists"
+            })
+        }
+    }catch(err){
+        res.send( {
+            success:false,
+            message:"error with request",
+            data:err.message
+        })
+    }
+})
+
+
+usersAPI.put('/change-photo' ,async (req,res) => {
+    const usersCollection = req.app.get('users')
+    
+    try{
+        const {id , photo} = req.body;
+        const updateStatus = await usersCollection.updateOne({ "_id" : new ObjectId(id)} , { $set: { photo:photo}} );
+
+        res.send({
+            success:true,
+            message:"photo updated",
+            data:updateStatus
+        })
+    }catch(err){
+        res.send({
+            success:false,
+            message:"photo not updated",
+            data:err.message
+        })
+    }
+})
 
 module.exports = usersAPI;

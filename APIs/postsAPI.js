@@ -58,5 +58,19 @@ postsAPI.delete('/delete-post' , async(req,res)=>{
 
 })
 
+// postsAPI.put("/like-post" , async(req,res) => {
+//     const postsCollection = req.app.get("posts");
+
+//     const { postId , userId } = req.body;
+//     const likeStatus = await postsCollection.find( { "_id":new ObjectId(postId) } ).toArray();
+//     const allLikes = likeStatus[0].likes;
+//     let status = false;
+//     allLikes.forEach( id => {
+//         if(id == userId ){
+//             status = true;
+//             break;
+//         }
+//     })
+// })
 
 module.exports = postsAPI;
