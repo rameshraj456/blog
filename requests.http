@@ -64,3 +64,28 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:4000/admin/deleted-posts
+
+###
+PUT http://localhost:4000/users/change-username
+Content-Type: application/json
+
+{
+    "id":"67b08135214798b3f37b26b2",
+    "userName":"ramesh"
+}
+###
+PUT http://localhost:4000/users/change-photo
+Content-Type: application/json
+
+{
+    "id":"67b08135214798b3f37b26b2",
+    "photo":"ramesh"
+}
+###
+PUT http://localhost:4000/posts/like-post
+Content-Type: application/json
+
+{
+    "postId":"id",
+    "userId":"id"
+}
