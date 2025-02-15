@@ -41,4 +41,14 @@ adminAPI.delete("/delete-deleted-posts" , async (req,res) => {
     })
 })
 
+adminAPI.get("/logs" , async (req,res) => {
+    const logsCollection = req.app.get("logs");
+    const data = await logsCollection.find().toArray()
+    res.send({
+        success:true,
+        message:"all system logs",
+        data:data
+    })
+})
+
 module.exports = adminAPI;

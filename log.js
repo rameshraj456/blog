@@ -1,4 +1,4 @@
-function systemLogs(req,res,next)
+async function systemLogs(req,res,next)
 {
     const time = new Date();
     const object = {
@@ -9,6 +9,8 @@ function systemLogs(req,res,next)
         time:time
     }
     console.log(object);
+    const logsCollection = req.app.get("logs")
+    await logsCollection.insertOne( object );
 
     next();
 }
