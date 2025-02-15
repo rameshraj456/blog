@@ -1,0 +1,66 @@
+GET http://localhost:4000/users/all-users
+###
+POST http://localhost:4000/users/login
+Content-Type: application/json
+
+{
+    "email":"gouthamreddy9398@gmail.com",
+    "photo":"http://localhost:3000/logo192.png"
+}
+###
+POST http://localhost:4000/users/login-with-user-name
+Content-Type: application/json
+
+{
+    "userName":"chcklivi",
+    "password":"x4meg2js"
+}
+###
+GET http://localhost:4000/posts/all-posts
+###
+POST http://localhost:4000/posts/create-post
+Content-Type: application/json
+
+{
+    "userId":"67b08135214798b3f37b26b2",
+    "postedOn":"time",
+    "title":"Introduction to C",
+    "body":[
+        {
+            "type":"text",
+            "value":"line1"
+        },
+        {
+            "type":"text",
+            "value":"line2"
+        },
+        {
+            "type":"image",
+            "value":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwYfEY5JJQ6oRFRnN9qXkcEi1aExLGvYWPSg9ENQB_w6-NIH4bhTn_2VYr22kNRmsays&usqp=CAU"
+        }
+    ],
+    "tags":["C" , "technology" , "programming"],
+    "likes":[ "67b08135214798b3f37b26b2" , "67b086842f223a89bf110062" ],
+    "comments":[
+        {
+            "userId":"67b086842f223a89bf110062",
+            "text":"comment1"
+        }
+    ]
+}
+###
+DELETE http://localhost:4000/posts/delete-post
+Content-Type: application/json
+
+{
+    "id":"67b087ac7c8005295e614dbf"
+}
+###
+DELETE http://localhost:4000/admin/delete-deleted-posts
+Content-Type: application/json
+
+{
+    "id":"67b08d94af28854dd52699dd"
+}
+###
+GET http://localhost:4000/admin/deleted-posts
